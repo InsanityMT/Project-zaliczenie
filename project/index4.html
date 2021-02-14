@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style type="text/css">
+		div {
+			position: absolute;width: 100px;
+			height: 100px;
+			border: red 1px solid;
+		}
+		img {
+			width: 100px;
+			height: 100px;
+		}
+	</style>
+	<script type="text/javascript">
+		function gengrid(){
+			var num=3, newdiv, divIdName;
+			for (var i=0; i<num; i++){
+				for (var j=0; j<num; j++){
+			newdiv= document.createElement('div');
+			divIdName='a'+i+j;
+			newdiv.setAttribute('id', divIdName);
+			newdiv.style.top=100+100*i+'px';
+			newdiv.style.left=100+100*j+'px';
+			newdiv.addEventListener('click', function(){
+				Graj(this);
+			});
+			document.body.appendChild(newdiv);}}
+			
+		}
+		var k=0;
+		var p1="<img src='lekcja4/kolko.png'>";
+		var p2="<img src='lekcja4/krzyzyk.png'>";
+		var tab33=[[0,0,0],[0,0,0],[0,0,0]];
+		var ids=[['a00','a01','a02'],['a10','a11','a12'],['a20','a21','a22']]
+		var win=false; 
+		function Sprawdz(a){
+			var sum1=0; sum2=0;
+	
+			for(var i=0;i<3; i++) { for (var j=0; j<3;j++) 
+			{sum1+=tab33[i][j]; sum2+=tab33[j][i];}
+			if ((sum1==3*a || sum2==3*a)
+			||(tab33[0][0] === tab33[1][1] && tab33[1][1] === tab33[2][2] &&tab33[2][2] !== 0 )
+			||(tab33[0][2] === tab33[1][1] && tab33[1][1] === tab33[2][0] &&tab33[2][0] !== 0 ))
+	
+			win=true;
+			sum1=0; sum2=0;}
+			return win;
+		}
+		function Graj(x){
+
+		  if (win==true){return}
+			var row, col;
+			for(var i=0;i<3; i++)for(var j=0; j<3;j++) 
+			if (x==document.getElementById(ids[i][j])){row=i; col=j;}
+		console.log(row, col);
+		a33.innerHTML="";
+			if ((k==0) && (tab33[row][col]==0)){
+				x.innerHTML=p1;
+				tab33[row][col]=1;
+				if (Sprawdz(1)) a33.innerHTML=p1;
+				k=1;
+			}else if(tab33[row][col]==0){
+				x.innerHTML=p2;
+				tab33[row][col]=-1;
+				k=0;
+				if (Sprawdz(-1)) a33.innerHTML=p2;
+				 
+			}
+			/*	for(var i=0;i<3; i++){
+					for(var j=0; j<3;j++) 
+					a33.innerHTML+=tab33[i][j]+" "
+				a33.innerHTML+="<br>";} */
+		}
+	</script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body onload='gengrid()'>
+	  <ul>
+    <li><a href="index1.html">Lekcja 1</a>
+    <li><a href="index2.html">Lekcja 2</a>
+    <li><a href="index3.html">Lekcja 3</a>
+    <li><a href="index4.html">Lekcja 4</a>
+    <li><a href="index5.html">Lekcja 5</a>
+    <li><a href="index6.html">Lekcja 6</a>
+    <li><a href="index.html" style="padding-left:350px;">Main page</a>
+</ul>
+	<div id='a33' style="left:420px;top:100px;"></div>
+	
+</body>
+</html>
