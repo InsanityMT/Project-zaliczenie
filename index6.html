@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+      #i1 {position:absolute;bottom:200px;}  
+      #a1 {position:absolute;  
+      height:10px; width:200px;border:1px solid red }
+    </style>
+   
+</head>
+<body style="background-color: white;">
+       <ul>
+    <li><a href="index1.html">Lekcja 1</a>
+    <li><a href="index2.html">Lekcja 2</a>
+    <li><a href="index3.html">Lekcja 3</a>
+    <li><a href="index4.html">Lekcja 4</a>
+    <li><a href="index5.html">Lekcja 5</a>
+    <li><a href="index6.html">Lekcja 6</a>
+    <li><a href="index.html" style="padding-left:350px;">Main page</a>
+</ul>
+    <div id="i1" onclick="StartMove()"><img src=lekcja6/kolko.png width="50px"
+        style="top:250px;"></div>
+    <div id="a1" style="top:807px; left:200px;"></div>
+
+  <script>
+
+        var Game = true;
+        var id1, xx, yy;
+        function StartMove(){
+            document.addEventListener('keydown', keyDown);
+
+                xx=document.documentElement.clientWidth-100;
+                yy=document.documentElement.clientHeight-100;
+                console.log(xx, yy);
+                i1.style.left=xx+"px";
+                i1.style.top=yy+"px";
+                id1=setInterval("Move(Game)", 40);
+            }
+        var x=200;
+        function keyDown(e){
+                var stepSize=20;
+
+                if(e.keyCode===37) x-=stepSize;
+                if(e.keyCode===39) x+=stepSize;
+                a1.style.left=x+"px";
+            
+        }
+       
+        var k=1; l=1;
+        function Move(Game){
+            if (yy>document.documentElement.clientHeight-60)  {
+                Game=false;
+              return;   
+            }
+           
+            
+            xx-=10*k; yy-=10*l;
+            if (xx<0) k=-1; if (yy<0) l=-1;
+            if (xx>document.documentElement.clientWidth-51) k=1;
+            
+            let i1Top = i1.style.top.substr(0, i1.style.top.length-2);
+            let a1Top = a1.style.top.substr(0, a1.style.top.length-2);
+       
+            let a1Left = a1.style.left.substr(0, a1.style.left.length-2);
+            let i1Left = i1.style.left.substr(0, i1.style.left.length-2);
+         
+            if ( Number(a1Top)-Number(i1Top)<50 && Number(a1Left)-50 < Number(i1Left) && Number(a1Left)+200>Number(i1Left)) 
+            {  l=1;  
+                   console.log(i1Left);
+                  }
+            i1.style.left=xx+"px";
+            i1.style.top=yy+"px";
+
+        }
+   function reload (){
+          window.location.reload();
+        }   
+
+    </script>
+          <input type="button" value="New Game" onclick=reload() style="margin-left:40%; font-size:24px;">   
+</body>
+</html>

@@ -1,0 +1,15 @@
+.calc1{
+	width: 50%;
+	border:blue 3px solid; 
+	background-color: #9683DE;
+}
+#slide1{
+	position: absolute;
+   
+    width: 150px;
+    height: 150px;
+  	background-color: red;
+  	left: 250px;
+    margin-top:250px;
+  	text-align:center;
+  }
